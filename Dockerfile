@@ -8,10 +8,15 @@ RUN chmod +x ./setversion.sh && ./setversion.sh
 # Restore as distinct layers
 RUN dotnet restore
 # Build and publish a release
-RUN dotnet publish -c Release -o out
+RUN dotnet publish --runtime linux-x64 --self-contained false -c Release -o out
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
+#FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+#ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+#RUN sed "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories
+#RUN apk add --no-cache icu-libs icu-data-full libintl libssl3 zlib tzdata bash
+
 WORKDIR /app
 COPY --from=build-env /app/out .
 #COPY ./build ./
@@ -26,5 +31,5 @@ RUN chmod +x /app/docker-entrypoint.sh
 RUN ln -sf /bin/bash /bin/sh
 
 #RUN dotnet dev-certs https
-    
+
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
