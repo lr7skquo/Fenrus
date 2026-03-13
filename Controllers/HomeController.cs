@@ -277,6 +277,8 @@ public class HomeController : BaseController
         if (settings.AllowRegister == false)
             return LoginPage(Translator.Instant("Pages.Login.ErrorMessages.RegistrationNotAllowed"));
         var user = new Services.UserService().Register(username, password);
+        if(user == null)
+            return LoginPage(Translator.Instant("Pages.Login.ErrorMessages.LoginFailed"));
         await CreateClaim(user.Uid, user.Name, user.IsAdmin);
         return Redirect("/");
     }

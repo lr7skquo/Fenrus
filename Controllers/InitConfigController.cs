@@ -1,3 +1,4 @@
+using Fenrus.Middleware;
 using Fenrus.Models;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -114,7 +115,8 @@ public class InitConfigController : Controller
         if (model.Strategy == AuthStrategy.LocalStrategy)
         {
             var userService = new UserService();
-            var user = userService.Register(model.LocalStrategyUsername, model.LocalStrategyPassword, isAdmin: true);
+            var user = userService.Register(model.LocalStrategyUsername, model.LocalStrategyPassword, isAdmin: true,
+                initialConfig: true);
 
             // need to save service after registering the user to make correctly set InitDone to true
             service.Save();

@@ -37,12 +37,18 @@ public class UserService
     /// <param name="username">the username</param>
     /// <param name="password">the password</param>
     /// <param name="isAdmin">if this user is an admin or not</param>
+    /// <param name="initialConfig">if this is the initail configuration</param>
     /// <returns>the newly registered user</returns>
-    public Models.User Register(string username, string password, bool isAdmin = false)
+    public Models.User? Register(string username, string password, bool isAdmin = false, bool initialConfig = false)
     {
         var user = DbHelper.GetByName<Models.User>(username);
         if (user != null)
         {
+            if (initialConfig == false)
+            {
+                // not initial configuration, dont allow
+                return null;
+            }
             // already exists, just update them
             user.Password = BCrypt.Net.BCrypt.HashPassword(password);;
             user.IsAdmin = isAdmin;
