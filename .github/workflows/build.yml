@@ -127,7 +127,7 @@ jobs:
           # WebOptimizer compiles the Scss and bundles the JS at request time. It is the
           # oldest dependency in the tree and the one most likely to break on a new
           # runtime, so assert the bundles are served and non-empty rather than just 200.
-          for bundle in /css/_fenrus.css /js/_fenrus.js; do
+          for bundle in /css/app.css /js/_fenrus.js; do
             check "$bundle" 200
             size=$(curl -s "http://localhost:3000${bundle}" | wc -c)
             if [ "$size" -gt 0 ]; then
