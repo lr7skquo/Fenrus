@@ -6,6 +6,7 @@ WORKDIR /app
 # Copy application files
 COPY ./build ./
 COPY /Apps /app/Apps
+COPY /i18n /app/i18n
 ENV Docker=1
 COPY /reset.sh /app/reset.sh
 RUN chmod +x /app/reset.sh
