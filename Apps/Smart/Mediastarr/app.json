@@ -1,0 +1,25 @@
+{
+  "Name": "Mediastarr",
+  "Icon": "icon.png",
+  "TestFunction": true,
+  "Interval": 30,
+  "Info": {
+    "Authors": ["OpenAI Codex"],
+    "AppUrl": "https://github.com/kroeberd/mediastarr",
+    "Description": "Shows Mediastarr instance health, today's searches, missing and upgrade activity, and the recent search trend."
+  },
+  "Properties": [
+    {
+      "Name": "API Key / Password",
+      "Id": "apiKey",
+      "Type": "string",
+      "Help": "Optional. Sends X-Api-Key for password-protected Mediastarr instances."
+    },
+    {
+      "Name": "Status Path",
+      "Id": "statusPath",
+      "Type": "string",
+      "Help": "Optional override. Defaults to /api/integrations/fenrus/status"
+    }
+  ]
+}

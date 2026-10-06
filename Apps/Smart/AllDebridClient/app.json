@@ -1,0 +1,19 @@
+{
+  "Name": "AllDebrid-Client",
+  "Icon": "icon.svg",
+  "TestFunction": true,
+  "Interval": 10,
+  "Info": {
+    "Authors": ["OpenAI Codex"],
+    "AppUrl": "https://github.com/kroeberd/alldebrid-client",
+    "Description": "Shows queue, active downloads, completed items, errors and recent activity from AllDebrid-Client."
+  },
+  "Properties": [
+    {
+      "Name": "Status Path",
+      "Id": "statusPath",
+      "Type": "string",
+      "Help": "Optional override. Defaults to /api/integrations/fenrus/status"
+    }
+  ]
+}
